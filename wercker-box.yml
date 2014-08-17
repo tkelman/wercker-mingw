@@ -1,0 +1,23 @@
+name: mingw
+version: 0.0.1
+inherits: ruudk/ubuntu14.04@1.0.0
+type: service
+platform: ubuntu@14.04
+description: wercker box for cross-compiling with mingw
+keywords:
+  - mingw
+  - trusty
+  - wine
+packages:
+  - make
+  - git
+  - curl
+  - patch
+  - p7zip-full
+  - gcc
+  - g++-mingw-w64
+  - gfortran-mingw-w64
+script: |
+  sudo apt-add-repository ppa:ubuntu-wine/ppa -y
+  sudo apt-get update -y
+  sudo apt-get install wine1.7 -y
