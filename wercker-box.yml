@@ -1,7 +1,7 @@
 name: mingw
-version: 0.0.1
+version: 0.0.2
 inherits: ruudk/ubuntu14.04@1.0.0
-type: service
+type: main
 platform: ubuntu@14.04
 description: wercker box for cross-compiling with mingw
 keywords:
@@ -14,6 +14,7 @@ packages:
   - git
   - curl
   - patch
+  - m4
   - p7zip-full
   - gcc
   - g++-mingw-w64
@@ -21,7 +22,7 @@ packages:
   - wine1.7
 script: |
   sudo apt-get update -y
-  sudo apt-get install --no-install-recommends software-properties-common make git curl patch p7zip-full gcc g++-mingw-w64 gfortran-mingw-w64 -y
+  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full gcc g++-mingw-w64 gfortran-mingw-w64 -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
   sudo apt-get update -y
   sudo apt-get install --no-install-recommends wine1.7 -y
