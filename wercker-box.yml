@@ -17,7 +17,10 @@ packages:
   - gcc
   - g++-mingw-w64
   - gfortran-mingw-w64
+  - wine1.7
 script: |
+  sudo apt-get update -y
+  sudo apt-get install --no-install-recommends make git curl patch p7zip-full gcc g++-mingw-w64 gfortran-mingw-w64 -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
   sudo apt-get update -y
   sudo apt-get install wine1.7 -y
