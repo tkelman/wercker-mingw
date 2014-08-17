@@ -1,5 +1,5 @@
 name: mingw
-version: 0.0.2
+version: 0.0.3
 inherits: ruudk/ubuntu14.04@1.0.0
 type: main
 platform: ubuntu@14.04
@@ -16,13 +16,13 @@ packages:
   - patch
   - m4
   - p7zip-full
-  - gcc
+  - g++
   - g++-mingw-w64
   - gfortran-mingw-w64
   - wine1.7
 script: |
   sudo apt-get update -y
-  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full gcc g++-mingw-w64 gfortran-mingw-w64 -y
+  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ g++-mingw-w64 gfortran-mingw-w64 -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
   sudo apt-get update -y
   sudo apt-get install --no-install-recommends wine1.7 -y
