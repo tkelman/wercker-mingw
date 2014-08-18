@@ -18,6 +18,7 @@ packages:
   - p7zip-full
   - g++
   - dpkg-dev
+  - fakeroot
   - g++-mingw-w64
   - gfortran-mingw-w64
   - wine1.7
@@ -30,15 +31,14 @@ script: |
   sudo echo 'deb-src http://security.ubuntu.com/ubuntu trusty-security restricted main universe multiverse' >> /etc/apt/sources.list
   sudo echo 'deb-src http://us.archive.ubuntu.com/ubuntu/ trusty-proposed restricted main universe multiverse' >> /etc/apt/sources.list
   sudo apt-get update -y
-  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ dpkg-dev -y
+  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ dpkg-dev fakeroot -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
   sudo apt-get update -y
   sudo apt-get install --no-install-recommends wine1.7 -y
   mkdir ~/GCC
   cd ~/GCC
   apt-get source gcc-mingw-w64 -y
-  sudo apt-get build-dep g++-mingw-w64 -y
-  sudo apt-get build-dep gfortran-mingw-w64 -y
+  sudo apt-get build-dep gcc-mingw-w64 -y
   cd gcc-mingw-w64-12
   sed -i 's/--enable-threads=posix/--enable-threads=win32/g' debian/rules
   sed -i 's/--enable-sjlj-exceptions//g' debian/rules
@@ -46,3 +46,5 @@ script: |
   dpkg-buildpackage -rfakeroot -uc -b
   cd ..
   sudo dpkg -i *.deb
+  cd ..
+  rm -rf ~/GCC
