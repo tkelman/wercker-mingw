@@ -17,6 +17,7 @@ packages:
   - m4
   - p7zip-full
   - g++
+  - dpkg-dev
   - g++-mingw-w64
   - gfortran-mingw-w64
   - wine1.7
@@ -29,7 +30,7 @@ script: |
   sudo echo 'deb-src http://security.ubuntu.com/ubuntu trusty-security restricted main universe multiverse' >> /etc/apt/sources.list
   sudo echo 'deb-src http://us.archive.ubuntu.com/ubuntu/ trusty-proposed restricted main universe multiverse' >> /etc/apt/sources.list
   sudo apt-get update -y
-  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ -y
+  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ dpkg-dev -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
   sudo apt-get update -y
   sudo apt-get install --no-install-recommends wine1.7 -y
