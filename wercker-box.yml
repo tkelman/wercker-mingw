@@ -21,6 +21,12 @@ packages:
   - gfortran-mingw-w64
   - wine1.7
 script: |
+  sudo echo 'deb-src http://archive.ubuntu.com/ubuntu trusty main restricted' >> /etc/apt/sources.list
+  sudo echo 'deb-src http://us.archive.ubuntu.com/ubuntu/ trusty restricted main universe multiverse' >> /etc/apt/sources.list
+  sudo echo 'deb-src http://us.archive.ubuntu.com/ubuntu/ trusty-updates restricted main universe multiverse' >> /etc/apt/sources.list
+  sudo echo 'deb-src http://us.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse' >> /etc/apt/sources.list
+  sudo echo 'deb-src http://security.ubuntu.com/ubuntu trusty-security restricted main universe multiverse' >> /etc/apt/sources.list
+  sudo echo 'deb-src http://us.archive.ubuntu.com/ubuntu/ trusty-proposed restricted main universe multiverse' >> /etc/apt/sources.list
   sudo apt-get update -y
   sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
