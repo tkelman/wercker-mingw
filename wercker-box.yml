@@ -1,5 +1,5 @@
 name: mingw
-version: 0.0.3
+version: 0.1.0
 inherits: ruudk/ubuntu14.04@1.0.0
 type: main
 platform: ubuntu@14.04
@@ -22,7 +22,19 @@ packages:
   - wine1.7
 script: |
   sudo apt-get update -y
-  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ g++-mingw-w64 gfortran-mingw-w64 -y
+  sudo apt-get install --no-install-recommends software-properties-common make git curl patch m4 p7zip-full g++ -y
   sudo apt-add-repository ppa:ubuntu-wine/ppa -y
   sudo apt-get update -y
   sudo apt-get install --no-install-recommends wine1.7 -y
+  mkdir ~/GCC
+  cd ~/GCC
+  apt-get source gcc-mingw-w64 -y
+  sudo apt-get build-dep g++-mingw-w64 -y
+  sudo apt-get build-dep gfortran-mingw-w64 -y
+  cd gcc-mingw-w64-12
+  sed -i 's/--enable-threads=posix/--enable-threads=win32/g' debian/rules
+  sed -i 's/--enable-sjlj-exceptions//g' debian/rules
+  sed -i 's/libgcc_s_sjlj-1.dll/libgcc_s_seh-1.dll/g' debian/gcc-mingw-w64-x86-64.install
+  dpkg-buildpackage -rfakeroot -uc -b
+  cd ..
+  sudo dpkg -i *.deb
